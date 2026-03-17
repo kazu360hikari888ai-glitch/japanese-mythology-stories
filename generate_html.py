@@ -60,7 +60,7 @@ episodes = [
     (45, "兄宇迦斯の罠", 5, "神武東征篇", "罠の匂いを嗅ぎ分け、策士を己の策で殺す。酒宴の歌が合図に変わる時、祖先の血が繰り返す。"),
     (46, "長髄彦との再戦", 5, "神武東征篇", "もう一人の天孫が大和にいた。正義と正義がぶつかり、敗者の目に映ったのは──守りたかった空だった。"),
     (47, "橿原の宮", 5, "神武東征篇", "三人の兄を失った末弟が、震える声で最初の王となる。不完全だからこそ──始まる。"),
-    (48, "ヒメタタライスズ ─ 皇后の秘密", 5, "神武東征篇", "流れてきた赤い矢が、一人の姫の人生を変えた。神に選ばれたその女が産む子は、人でも神でもなく──この国の最初の「王妃」となる。"),
+    (48, "ヒメタタライスズ ─ 皇后の秘密", 5, "神武東征篇", "自分の名前が嫌いだった。「タタラ」──炉の火。なぜ私の名に、そんな熱い言葉が入っているのか。その答えは、天と地の血が混ざる夜に明かされる。"),
     (49, "三輪山の影", 5, "神武東征篇", "三輪山から見えない糸を引く大国主。仮面を外した「大丈夫」が、初めて本物の声で響く。"),
     (50, "神代の終わり ─ 不完全さの中の美", 5, "神武東征篇", "不完全な神々の手は、いつも届かなかった。その届かなさが──祈りの始まりだった。"),
 ]
@@ -214,9 +214,37 @@ def generate_episode_html(ep_num, title, part_num, part_name, description):
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>第{ep_num}話「{title}」─ 不完全な神々</title>
+  <title>第{ep_num}話「{title}」─ 不完全な神々 ～日本神話物語～</title>
   <meta name="description" content="{description}">
-  <link rel="stylesheet" href="style.css?v=20">
+
+  <!-- Open Graph / Twitter Card -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="第{ep_num}話「{title}」─ 不完全な神々">
+  <meta property="og:description" content="{description}">
+  <meta property="og:image" content="images/ep{ep_num}.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "第{ep_num}話「{title}」",
+    "description": "{description}",
+    "isPartOf": {{
+      "@type": "CreativeWorkSeries",
+      "name": "不完全な神々 ～日本神話物語～"
+    }},
+    "position": {ep_num}
+  }}
+  </script>
+
+  <!-- Google Fonts (non-blocking) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&display=swap">
+
+  <link rel="stylesheet" href="style.css?v=21">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>⛩️</text></svg>">
 </head>
 <body>
@@ -263,7 +291,7 @@ def generate_episode_html(ep_num, title, part_num, part_name, description):
     <p class="site-footer__copy">&copy; 2025-2026 All rights reserved.</p>
   </footer>
 
-  <script src="reader.js"></script>
+  <script src="reader.js" defer></script>
 
 </body>
 </html>'''

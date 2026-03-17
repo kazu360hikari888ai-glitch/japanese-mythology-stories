@@ -3,8 +3,7 @@
    Design System & Styles
    ============================ */
 
-/* --- Google Fonts --- */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&display=swap');
+/* --- Google Fonts (loaded via <link> in HTML for performance) --- */
 
 /* --- CSS Custom Properties --- */
 :root {
@@ -22,13 +21,18 @@
   --ink-moonlight: #8899bb;
 
   --text-primary:  #e8e4dc;
-  --text-secondary:#9e9a90;
-  --text-dim:      #6a665c;
+  --text-secondary:#b0aca2;
+  --text-dim:      #7a766c;
   --text-body:     #ccc8be;
 
   /* Typography */
   --font-serif:    'Shippori Mincho', 'Noto Serif JP', 'Yu Mincho', serif;
   --font-body:     'Noto Serif JP', 'Yu Mincho', serif;
+  --font-sans:     'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
+
+  /* Additional Colors */
+  --text-tertiary: #4a463c;
+  --bg-dark:       #0a0a0f;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -66,6 +70,8 @@
   --text-secondary:#3a362f;
   --text-dim:      #5c584f;
   --text-body:     #2a2825;
+  --text-tertiary: #7a756a;
+  --bg-dark:       #f7f6f2;
 }
 
 /* --- Reset & Base --- */
@@ -112,6 +118,17 @@ a {
 
 a:hover {
   color: var(--ink-gold-glow);
+}
+
+/* Focus ring for keyboard accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--ink-gold);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* --- Scrollbar --- */
