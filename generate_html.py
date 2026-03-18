@@ -63,6 +63,7 @@ episodes = [
     (48, "ヒメタタライスズ ─ 皇后の秘密", 5, "神武東征篇", "自分の名前が嫌いだった。「タタラ」──炉の火。なぜ私の名に、そんな熱い言葉が入っているのか。その答えは、天と地の血が混ざる夜に明かされる。"),
     (49, "三輪山の影", 5, "神武東征篇", "三輪山から見えない糸を引く大国主。仮面を外した「大丈夫」が、初めて本物の声で響く。"),
     (50, "神代の終わり ─ 不完全さの中の美", 5, "神武東征篇", "不完全な神々の手は、いつも届かなかった。その届かなさが──祈りの始まりだった。"),
+    (51, "神々の遺言 ─ 現代を生きるあなたへ", 5, "神武東征篇", "「見るな」を忘れた時代に。ヒルコは今も流されている。あなたの天岩戸。──千三百年前の神々が、現代を生きるあなたに遺した七つの言葉。"),
 ]
 
 # 本文ファイルからHTMLの本文を読みこむためのマッピング
@@ -145,6 +146,9 @@ def extract_episode_text_from_md(md_path, ep_num, ep_title):
         # 通常テキスト
         text = line.strip().lstrip('　')
         if text:
+            # インライン Markdown: **太字**, *イタリック*
+            text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
+            text = re.sub(r'(?<!\*)\*([^\*]+?)\*(?!\*)', r'<em>\1</em>', text)
             html_parts.append(f'    <p>{text}</p>')
 
     return '\n\n'.join(html_parts)
@@ -156,7 +160,7 @@ def generate_episode_html(ep_num, title, part_num, part_name, description):
 
 
     # 次話予告
-    if ep_num < 50:
+    if ep_num < 51:
         next_ep = episodes[ep_num]
         part_num_next = next_ep[2]
         teaser = f'''
@@ -180,7 +184,7 @@ def generate_episode_html(ep_num, title, part_num, part_name, description):
       <div class="episodes__grid next-teaser-grid">
         <div class="episode-card episode-card--final">
           <div class="episode-card__body" style="text-align: center;">
-            <h3 class="episode-card__title">全50話 完結</h3>
+            <h3 class="episode-card__title">全51話 完結</h3>
             <p class="episode-card__synopsis">不完全な神々が紡いだ物語は、ここに幕を閉じる。しかし神々は消えたのではない──この国の隅々に息づいている。</p>
             <a href="index.html" class="episode-card__cta" style="justify-content: center; margin-top: 1.5rem;">目次へ戻る →</a>
           </div>
